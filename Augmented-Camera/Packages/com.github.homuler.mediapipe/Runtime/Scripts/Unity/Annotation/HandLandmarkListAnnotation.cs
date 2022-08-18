@@ -6,6 +6,7 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Mediapipe.Unity
 {
@@ -25,6 +26,8 @@ namespace Mediapipe.Unity
       Left,
       Right,
     }
+
+    [FormerlySerializedAs("Handness")] public Hand Handedness;
 
     private const int _LandmarkCount = 21;
     private readonly List<(int, int)> _connections = new List<(int, int)> {
@@ -106,6 +109,7 @@ namespace Mediapipe.Unity
 
     public void SetHandedness(Hand handedness)
     {
+      Handedness = handedness;
       if (handedness == Hand.Left)
       {
         _landmarkListAnnotation.SetColor(_leftLandmarkColor);
